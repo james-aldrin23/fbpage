@@ -1,36 +1,28 @@
 
 <?php 
 
+//get input from html using "$_POST[]"
+$firstname = $_POST["firstname"];
+$lastname = $_POST["lastname"];
+$email = $_POST["email"];
+$passw = $_POST["password"];
+$confirm = $_POST["confirm"];
+
+
 //server connection
 $servername = "localhost";
 $username = "root";
 // there  is no password in default
-$password = "";
+$password ="";
 // our database name
 $dbname = "profile";
 
 
 
-
-//get input from html using "$_POST[]"
-$firstname = $_POST["firstname"];
-$lastname = $_POST["lastname"];
-$email = $_POST["email"];
-$password = $_POST["password"];
-$confirm = $_POST["confirm"];
-
-
-
-
-
 //sql connection
 
-
-
-
-
 //lets check its connected
-$conn = new mysqli($servername, $username, $password,$dbname);
+$conn = new mysqli($servername,$username, $password,$dbname);
 
 // Check connection
 if ($conn->connect_error) {
@@ -38,8 +30,8 @@ if ($conn->connect_error) {
 }
 // in php we use "." operator for string concatenation!
 // store sql query in variable
-$sql = "insert into profile(firstname,lastname,email,password,confirm)
-VALUES ('$firstname', '$lastname', '$email','$confirm')";
+$sql = "INSERT INTO users(user_firstname,user_lastname,user_email,user_pass,user_confirm)
+VALUES ('$firstname','$lastname','$email','$passw','$confirm')";
 
 //query execution
 if ($conn->query($sql) === TRUE) {
@@ -47,9 +39,5 @@ if ($conn->query($sql) === TRUE) {
 } else {
   echo "Error: " . $sql . "<br>" . $conn->error;
 }
-
-
-
-
 
 ?>
